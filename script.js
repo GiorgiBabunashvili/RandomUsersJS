@@ -1,9 +1,9 @@
 const main = document.getElementById("main");
-const addUser = document.getElementById("add-user");
-const doubleMoney = document.getElementById("double-money");
-const showMilionaiers = document.getElementById("show-milionaiers");
-const sortRichest = document.getElementById("sort-richest");
-const calculateWealth = document.getElementById("calculate-wealth");
+const addUserBtn = document.getElementById("add-user");
+const doubleMoneyBtn = document.getElementById("double-money");
+const showMilionaiersBtn = document.getElementById("show-milionaiers");
+const sortRichestBtn = document.getElementById("sort-richest");
+const calculateWealthBtn = document.getElementById("calculate-wealth");
 
 let data = [];
 
@@ -46,5 +46,19 @@ function formatMoney(number) {
   return "$" + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
 }
 
+//double money
+function doubleMoney() {
+  data = data.map((el) => ({ ...el, money: el.money * 2 }));
+  updateDOM();
+}
+
+//sort by richest
+function sortMoney() {
+  data = data.sort((a, b) => b.money - a.money);
+  updateDOM();
+}
+
 //event listeners
-addUser.addEventListener("click", getRandomUser);
+addUserBtn.addEventListener("click", getRandomUser);
+doubleMoneyBtn.addEventListener("click", doubleMoney);
+sortRichestBtn.addEventListener("click", sortMoney);

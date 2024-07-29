@@ -24,11 +24,27 @@ async function getRandomUser() {
 //Add new obj to data array
 function addData(obj) {
   data.push(obj);
+
+  updateDOM();
 }
 
 //Update DOM
 function updateDOM(provideData = data) {
   main.innerHTML = "<h2><strong>Person</strong> Wealth</h2>";
+  provideData.forEach((item) => {
+    const element = document.createElement("div");
+    element.classList.add("person");
+    element.innerHTML = `<strong>${item.name}</strong> ${formatMoney(
+      item.money
+    )}`;
+    main.appendChild(element);
+  });
 }
 
-addUser.addEventListener("click", () => {});
+//Format money
+function formatMoney(number) {
+  return "$" + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+}
+
+//event listeners
+addUser.addEventListener("click", getRandomUser);

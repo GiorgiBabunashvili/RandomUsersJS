@@ -25,3 +25,10 @@ async function getRandomUser() {
 function addData(obj) {
   data.push(obj);
 }
+
+//Update DOM
+function updateDOM(provideData = data) {
+  main.innerHTML = "<h2><strong>Person</strong> Wealth</h2>";
+}
+
+addUser.addEventListener("click", () => {});
